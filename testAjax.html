@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Api</title>
+</head>
+
+<body>
+
+   
+    <script type="text/javascript">
+        /*
+        window.onload = function () {
+        dataLength=0;
+        info=[];
+
+            function updateTemperature(){
+
+                $.ajax({
+
+                        url: 'https://uhasx4pob2.execute-api.us-east-1.amazonaws.com/dev/todos',
+                        type: "GET",
+                        dataType: 'json',
+                        async: false,
+                        cache: false,
+                        success: function(data) {
+                            
+                            
+                            if (dataLength !== data.length) {
+                                
+                            for (var i = dataLength; i < data.length; i++) {
+                          
+                                info.push({
+                                    x: new Date(data[i].createdAt),
+                                    y: parseInt(data[i].Temperatura),
+                                    lineColor: "red"
+                                });
+                            }//end od for 
+                     
+                        }//end of if 
+                        
+
+                        dataLength = info.length;
+                        chart.render();
+                        
+                        
+                        
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                            alert("Error al obtener datos del API Status: " + textStatus);
+                        }
+                    });
+
+
+
+            }
+        
+        $.ajax({
+
+                        url: 'https://uhasx4pob2.execute-api.us-east-1.amazonaws.com/dev/todos',
+                        type: "GET",
+                        dataType: 'json',
+                        async: false,
+                        cache: false,
+                        success: function(data) {
+                            
+                            if (dataLength !== data.length) {
+                            for (var i = dataLength; i < data.length; i++) {
+
+                                info.push({
+                                    x: new Date(data[i].createdAt),
+                                    y: parseInt(data[i].Temperatura),
+                                    lineColor: "red"
+                                });
+                            }//end od for 
+                     
+                        }//end of if 
+
+                       
+                  
+                        dataLength = data.length;
+                        
+                        
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                            alert("Error al obtener datos del API Status: " + textStatus);
+                        }
+                    });
+      
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Simple Line Chart"
+    },
+    axisY:{
+        includeZero: false
+    },
+    data: [{        
+        type: "line",
+        dataPoints: info
+    }]
+});
+
+setInterval(function () {  updateTemperature()   }, 5000);
+
+
+}
+
+*/
+    </script>
+
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var chart;
+
+      google.charts.load('current', { 
+        packages: ['corechart', 'line']
+        });
+
+        google.charts.setOnLoadCallback(drawBasic);
+        var dataLength=0;
+
+function drawBasic() {
+    
+    var flag = false;
+
+    function test(){
+
+        var x = $.ajax({
+                        url: 'https://uhasx4pob2.execute-api.us-east-1.amazonaws.com/dev/todos',
+                        type: "GET",
+                        dataType: 'json',
+                        async: false,
+                        cache: false,
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Error al obtener datos del API Status: " + textStatus);
+                        }
+                    }).responseJSON;
+
+        
+        if(x.length != dataLength){
+            flag= true;
+            for (var i = dataLength; i<x.length;i++){
+            data.addRows( [[new Date(x[i].createdAt) , parseInt([x[i].Temperatura])]] );
+            debugger;
+            }
+        }else{
+            flag=false;
+        }
+        if(flag){
+            dataLength=x.length;
+        chart.draw(data);
+        //location.reload();
+        debugger;
+        }  
+}
+
+
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'X');
+      data.addColumn('number', 'Example');
+
+      var options = {
+        hAxis: {
+          title: 'tiempo'
+        },
+        vAxis: {
+          title: 'Temperatura'
+        }
+      };
+
+      $.ajax({
+                        url: 'https://uhasx4pob2.execute-api.us-east-1.amazonaws.com/dev/todos',
+                        type: "GET",
+                        dataType: 'json',
+                        async: false,
+                        cache: false,
+                        success: function (response) {
+                           for (var i = dataLength; i<response.length;i++){
+            data.addRows( [[new Date(response[i].createdAt) , parseInt([response[i].Temperatura])]] );
+           
+            }
+
+
+            dataLength=response.length;
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Error al obtener datos del API Status: " + textStatus);
+                        }
+                    });
+
+        chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+      setInterval(test, 5000);
+
+
+    }
+    </script>
+
+
+
+    <!--  /////////////////////////////////////// body  -->
+
+    <h1>Test</h1>
+
+   <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+   <div id="chart_div"></div>
+
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

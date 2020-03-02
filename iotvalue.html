@@ -1,0 +1,122 @@
+<script src="jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+<script type="text/javascript">
+
+
+    
+
+    function getTemperature(){
+
+        var temperature = $.ajax({
+
+            url: 'temperatura.php', 
+            dataType: 'text',
+            async: false,
+            cache:false   
+        }).responseText;
+
+        
+        document.getElementById("t_value").innerHTML = ""+temperature;
+    }//end of getTemperature
+
+    function getHumidity(){
+
+        var humidity = $.ajax({
+
+            url: 'humedad.php', 
+            dataType: 'text',
+            async: false,
+            cache:false     
+        }).responseText;
+
+        
+        document.getElementById("h_value").innerHTML = ""+humidity;
+    }//end of getHumidity
+
+    function getLightness(){
+        var lightness = $.ajax({
+            url:'luminocidad.php',
+            dataType:'text',
+            async:false,
+            cache:false 
+
+        }).responseText;
+
+        document.getElementById("l_value").innerHTML=""+lightness;
+    }//end of getLightness
+
+  
+    setInterval(getTemperature,1000);
+    setInterval(getHumidity,1000);
+    setInterval(getLightness,1000);
+
+</script>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- <style type="text/css">
+    #fondo{
+        background: rgba(178,221,76,1);
+        background: -moz-linear-gradient(left, rgba(178,221,76,1) 0%, rgba(178,221,76,1) 3%, rgba(178,221,76,1) 22%, rgba(96,96,96,1) 78%, rgba(178,221,76,1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(178,221,76,1)), color-stop(3%, rgba(178,221,76,1)), color-stop(22%, rgba(178,221,76,1)), color-stop(78%, rgba(96,96,96,1)), color-stop(100%, rgba(178,221,76,1)));
+        background: -webkit-linear-gradient(left, rgba(178,221,76,1) 0%, rgba(178,221,76,1) 3%, rgba(178,221,76,1) 22%, rgba(96,96,96,1) 78%, rgba(178,221,76,1) 100%);
+        background: -o-linear-gradient(left, rgba(178,221,76,1) 0%, rgba(178,221,76,1) 3%, rgba(178,221,76,1) 22%, rgba(96,96,96,1) 78%, rgba(178,221,76,1) 100%);
+        background: -ms-linear-gradient(left, rgba(178,221,76,1) 0%, rgba(178,221,76,1) 3%, rgba(178,221,76,1) 22%, rgba(96,96,96,1) 78%, rgba(178,221,76,1) 100%);
+        background: linear-gradient(to right, rgba(178,221,76,1) 0%, rgba(178,221,76,1) 3%, rgba(178,221,76,1) 22%, rgba(96,96,96,1) 78%, rgba(178,221,76,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2dd4c', endColorstr='#b2dd4c', GradientType=1 );
+    }
+</style> -->
+
+<html>
+<body>
+       
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div id="fondo" style=" border-style: solid; border-width: 1px;" >
+
+                    <p style="font-size: 20px;">
+                        <i class="fas fa-thermometer-half"></i> Temperatura: 
+                        <label id="t_value">...</label>
+                    </p>
+
+                    <p style="font-size: 20px;"><i class="fas fa-cloud"></i>  Humedad: 
+                        <label id="h_value">...</label>
+                    </p>
+                    <p style="font-size: 20px;"> <i class="far fa-sun"></i>
+                        Luminosidad: <label id="l_value">...</label>
+                    </p>
+
+
+                    <p>
+                        <small>Powered by: xide from  
+                            <a href="https://microside.com/" target="blank">
+                                <img src="https://microside.com/wp-content/uploads/2020/02/microside-Marca.png" height="40px" width="auto">        
+                            </a>
+                        </small>
+                    </p>
+                    
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </body>
+    </html>

@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript">
+
+
+        window.onload = function() {
+
+                
+             
+
+                function getTemperature(){
+
+        var temperature = $.ajax({
+
+            url: 'rand.php', 
+            dataType: 'text',
+            async: false,
+            cache:false   
+        }).responseText;
+
+        
+        document.getElementById("t_value").innerHTML = ""+temperature;
+    }//end of getTemperature
+
+    function getHumidity(){
+
+        var humidity = $.ajax({
+
+            url: 'rand.php', 
+            dataType: 'text',
+            async: false,
+            cache:false     
+        }).responseText;
+
+        
+        document.getElementById("h_value").innerHTML = ""+humidity;
+    }//end of getHumidity
+
+    function getLightness(){
+        var lightness = $.ajax({
+            url:'rand.php',
+            dataType:'text',
+            async:false,
+            cache:false 
+
+        }).responseText;
+
+        document.getElementById("l_value").innerHTML=""+lightness;
+    }//end of getLightness
+
+  
+    setInterval(getTemperature,1000);
+    setInterval(getHumidity,1000);
+    setInterval(getLightness,1000);
+
+
+
+
+                
+                //   ----------------------------------------------------------------------------
+                
+
+                
+
+                //   ----------------------------------------------------------------------------
+
+                var chartH = new CanvasJS.Chart("chartH", {
+                    animationEnabled: true,
+                    title: {
+                        text: "Humedad"
+                    },
+                    axisX: {
+
+                        title: "Hora",
+                    },
+                    axisY: {
+                        title: "Humedad",
+                    },
+                    data: [{
+                        type: "line",
+                        dataPoints: [
+                                { x: new Date(2020, 25, 2,8,10,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,11,0), y: 35 },
+                            { x: new Date(2020, 25, 2,8,12,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,13,0), y: 31 },
+                            { x: new Date(2020, 25, 2,8,14,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,15,0), y: 32 },
+                            { x: new Date(2020, 25, 2,8,16,0), y: 40 },
+                            { x: new Date(2020, 25, 2,8,17,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,18,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,19,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,20,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,21,0), y: 30 }
+                        ]
+                        //dataPoints: dataH
+                    }],
+                });
+
+                //   ----------------------------------------------------------------------------
+                var chart = new CanvasJS.Chart("chart", {
+                    animationEnabled: true,
+                    title: {
+                        text: "Temperatura"
+                    },
+                    axisX: {
+
+                        title: "Hora",
+                    },
+                    axisY: {
+                        title: "Temperatura",
+                    },
+                    data: [{
+                        type: "line",
+                        dataPoints:[
+                                { x: new Date(2020, 25, 2,8,10,0), y: 4 },
+                            { x: new Date(2020, 25, 2,8,11,0), y: 35 },
+                            { x: new Date(2020, 25, 2,8,12,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,13,0), y: 31 },
+                            { x: new Date(2020, 25, 2,8,14,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,15,0), y: 32 },
+                            { x: new Date(2020, 25, 2,8,16,0), y: 40 },
+                            { x: new Date(2020, 25, 2,8,17,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,18,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,19,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,20,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,21,0), y: 30 }
+                        ]
+                        //dataPoints: data
+                    }],
+                });
+
+                //   ----------------------------------------------------------------------------
+                var chartL = new CanvasJS.Chart("chartL", {
+                    animationEnabled: true,
+                    title: {
+                        text: "Luminocidad"
+                    },
+                    axisX: {
+
+                        title: "Hora",
+                    },
+                    axisY: {
+                        title: "Luminocidad",
+                    },
+                    data: [{
+                        type: "line",
+                        dataPoints: [
+                                { x: new Date(2020, 25, 2,8,10,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,11,0), y: 35 },
+                            { x: new Date(2020, 25, 2,8,12,0), y: 20 },
+                            { x: new Date(2020, 25, 2,8,13,0), y: 31 },
+                            { x: new Date(2020, 25, 2,8,14,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,15,0), y: 10 },
+                            { x: new Date(2020, 25, 2,8,16,0), y: 40 },
+                            { x: new Date(2020, 25, 2,8,17,0), y: 29 },
+                            { x: new Date(2020, 25, 2,8,18,0), y: 15 },
+                            { x: new Date(2020, 25, 2,8,19,0), y: 40 },
+                            { x: new Date(2020, 25, 2,8,20,0), y: 30 },
+                            { x: new Date(2020, 25, 2,8,21,0), y: 30 }
+                        ]
+                    }],
+                });
+
+                //   ----------------------------------------------------------------------------
+             
+
+            } // end window
+    </script>
+
+</head>
+
+<body>
+
+
+
+    <div class="container" >
+        
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div  >
+
+                    <p style="font-size: 20px;">
+                        <i class="fas fa-thermometer-half"></i> Temperatura: 
+                        <label id="t_value">...</label>
+                    </p>
+
+                    <p style="font-size: 20px;"><i class="fas fa-cloud"></i>  Humedad: 
+                        <label id="h_value">...</label>
+                    </p>
+                    <p style="font-size: 20px;"> <i class="far fa-sun"></i>
+                        Luminosidad: <label id="l_value">...</label>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div style="height: 200px; width: 100%;" id="chart"></div>
+            </div>
+            <div class="col-md">
+                <div style="height: 200px; width: 100%;" id="chartH"></div>
+            </div>
+            <div class="col-md">
+                <div style="height: 200px; width: 100%;" id="chartL"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+
+        <p>
+                        <small>Powered by: xide from  
+                            <a href="https://microside.com/" target="blank">
+                                <img src="https://microside.com/wp-content/uploads/2020/02/microside-Marca.png" height="40px" width="auto">        
+                            </a>
+                        </small>
+                    </p>
+        
+    </div>
+    
+
+    <div class="container" style="background-color: blue; ">
+
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

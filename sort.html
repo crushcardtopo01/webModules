@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sort</title>
+</head>
+<body>
+<script type="text/javascript">
+
+var data = [{ "id": "110", "name": "FIAT", "active": true, "parentId": "1" }, { "id": "106", "name": "AUDI", "active": true, "parentId": "1" }, { "id": "107", "name": "BMW", "active": true, "parentId": "1" }, { "id": "109", "name": "RENAULT", "active": true, "parentId": "1" }];
+debugger;
+data.sort(function (a, b) {
+    return a.id.localeCompare(b.id);
+});
+debugger;
+document.write('<pre>' + JSON.stringify(data) + '</pre>');
+
+</script>
+</body>
+</html>
